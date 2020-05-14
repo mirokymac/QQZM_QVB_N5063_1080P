@@ -1,0 +1,30 @@
+[PROCESS_SEPARATORS] printenv
+arm_freq=0x00112032
+baudrate=115200
+bootargs=console=ttySGK0,115200 noinitrd mem=38M rw ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs init=/linuxrc phytype=0
+bootcmd=sf probe;sf read c1000000 0x50000 400000;bootm c1000000
+bootdelay=1
+bootfile=zImage
+consoledev=ttySGK0
+ethact=gk7101
+ethaddr=3C:97:0E:22:E1:14
+fileaddr=C1000000
+filesize=B20000
+gatewayip=11.1.4.1
+hostname="gk7101"
+ipaddr=192.168.2.44
+loadaddr=0xC1000000
+mem=46M
+netdev=eth0
+netmask=255.255.255.0
+nfsserver=11.1.4.19
+phytype=0
+rootfstype=ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs
+rootpath=/opt/work
+serverip=192.168.2.7
+sfboot=setenv bootargs console=${consoledev},${baudrate} noinitrd mem=${mem} rw${rootfstype} init=linuxrc ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdv} mac=${ehaddr} phyype=${phytpe};sf proe 0 0;sf rad ${loadadr} ${sfkenel} ${filsize}; bootm
+sfkernel=0x50000
+stderr=serial
+stdin=serial
+stdout=serial
+tftpboot=setenv bootargs root=/dev/nfs nfsroot=${nfsserver}:${rootpath},proto=tcp,nfsvers=3,nolock ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdev} mac=${ethaddr} phytype=${phytype} console=${consoledev},${baudrate} mem=${mem};tftpboot ${bootfile};bootm
